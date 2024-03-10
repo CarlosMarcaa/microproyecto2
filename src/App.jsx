@@ -9,11 +9,14 @@ const auth = getAuth(appFirebase);
 //Importing the components
 import Login from '../src/components/Login';
 import Home from '../src/components/Home';
+import SearchBar from '../src/components/SearchBar'
+import SearchResultList from './components/SearchResultList';
 
 
 
 function App() {
-  
+
+  const [results, setResults] = useState([]);
   const [user, setUser] = useState(null)
 
   onAuthStateChanged(auth, (firebaseUser)=> {
@@ -28,7 +31,13 @@ function App() {
     <div>
       
       {user ? <Home userEmail = {user.email} /> :  <Login/> }
+      <div className='search-bar-container'>
+        <SearchBar setResults={setResults}/>
+        <SearchResultList results={results}/>
+        <div>Resultados</div>
+      </div>
     </div>
+  
   )
 }
 
