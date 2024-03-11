@@ -1,31 +1,50 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../styles/SearchBar.css"
+import Buscador from './todo.json'
 
-export const SearchBar = ( [setResults] ) =>  {
-    const [input, setInput] = useState("");
-
-    const fetchData = (value) => {
-        fetch(".../juegos.json")
-            .then((Response) => Response.json())
-            .then((json) => {
-            const results = json.filter((juego) => {
-            return juego && juego.titulo && juego.titulo.toLowerCase().includes(value);
-
-                });
-                setResults(results);
-            });
-    };
-
-    const handleChange = (value) => {
-        setInput(value);
-        fetchData(value);
+const SearchBar = () => {
+    const [ users, setUsers] = useState([])
+    const [ search, setSearch ] = useState("")
+    const showData = async () => {
+       setUsers(Buscador)
     }
-    return (
-        <div className="input-wrapper">
-            <input placeholder="Buscar juego..." value={input} onChange={(e) => handleChange(e.target.value)}/>
-        </div>
-    )
 
-};
+    const searcher = (e) => {
+        setSearch(e.target.value)
+    }
+
+    let results = []
+    if(!search)
+    {
+        results = users
+    }else{
+        results = users.filter( (dato) =>
+        dato.titulo.toLowerCase().includes(search.toLowerCase())
+        )
+    }
+
+    useEffect ( ()=> {
+       showData()
+    })
+    return(
+       <div>
+            <input value={search} onChange={searcher} type="text" placeholder="Buscar por nombre..." className="barra"/>
+           <table className="tabla">
+               <thead>
+                   <tr className="bg">
+                       <th>Nombre</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   {results.map((user) => (
+                    <tr key={user.id}>
+                        <td>{user.titulo}</td>
+                    </tr>
+                   ))}
+               </tbody>
+           </table>
+       </div>
+    )
+}
 
 export default SearchBar

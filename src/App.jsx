@@ -11,6 +11,9 @@ import Login from '../src/components/Login';
 import Home from '../src/components/Home';
 import SearchBar from '../src/components/SearchBar'
 import SearchResultList from './components/SearchResultList';
+import Clubes from '../src/components/Clubes'
+import VideoJuegos from '../src/components/VideoJuegos'
+
 
 
 
@@ -34,6 +37,8 @@ function App() {
       <div className='search-bar-container'>
         <SearchBar setResults={setResults}/>
         <SearchResultList results={results}/>
+        <Clubes/>
+        <VideoJuegos/>
         <div>Resultados</div>
       </div>
     </div>
