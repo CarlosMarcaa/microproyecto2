@@ -6,3 +6,5 @@ export const SearchResult = ({ result }) => {
     <div className='search-result' onClick={(e) => alert(`Has escogido ${result.name}`)}>{result.name}</div>
   )
 };
+
+export default SearchResult
