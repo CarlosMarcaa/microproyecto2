@@ -10,16 +10,15 @@ const auth = getAuth(appFirebase);
 import Login from '../src/components/Login';
 import Home from '../src/components/Home';
 import SearchBar from '../src/components/SearchBar'
-import SearchResultList from './components/SearchResultList';
 import Clubes from '../src/components/Clubes'
 import VideoJuegos from '../src/components/VideoJuegos'
+import { Routes, Route } from 'react-router-dom';
+import Layout from '../src/components/Layout'
 
 
 
 
 function App() {
-
-  const [results, setResults] = useState([]);
   const [user, setUser] = useState(null)
 
   onAuthStateChanged(auth, (firebaseUser)=> {
@@ -35,11 +34,14 @@ function App() {
       
       {user ? <Home userEmail = {user.email} /> :  <Login/> }
       <div className='search-bar-container'>
-        <SearchBar setResults={setResults}/>
-        <SearchResultList results={results}/>
-        <Clubes/>
-        <VideoJuegos/>
-        <div>Resultados</div>
+        <h1>Secciones</h1>
+        <Routes>
+          <Route path='/' element={<Layout/>}>
+            <Route path='busqueda' element={<SearchBar/>}/>
+            <Route path='clubs' element={<Clubes/>}/>
+            <Route path='juegos' element={<VideoJuegos/>}/>
+          </Route>
+        </Routes>
       </div>
     </div>
   
