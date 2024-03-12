@@ -34,7 +34,6 @@ function App() {
       
       {user ? <Home userEmail = {user.email} /> :  <Login/> }
       <div className='search-bar-container'>
-        <h1>Secciones</h1>
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route path='busqueda' element={<SearchBar/>}/>

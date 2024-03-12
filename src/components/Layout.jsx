@@ -1,9 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
 import React from 'react'
+import '../styles/Layout.css'
 
 const Layout = () => {
   return (
-    <div>
+    <div className="form-control">
+      <div><h1>Secciones</h1></div>
       <nav>
         <ul>
             <li>

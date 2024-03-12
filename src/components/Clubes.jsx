@@ -9,7 +9,7 @@ function Clubes() {
             {
                 Clubs && Clubs.map( club => {
                     return(
-                        <div className="box" key={club.ID}>
+                        <div className="form-control" key={club.ID}>
                             <strong>{club.nombre}</strong><br/>
                             {club.descripcion} <br/>
                         </div>

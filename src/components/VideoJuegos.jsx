@@ -9,7 +9,7 @@ function VideoJuegos() {
             {
                 Juegos && Juegos.map( juego => {
                     return(
-                        <div className="box" key={juego.ID}>
+                        <div className="form-control" key={juego.ID}>
                             <strong>{juego.titulo}</strong><br/>
                             { juego.genero } <br/>
                             {juego.descripcion}<br/>
